@@ -1,0 +1,24 @@
+#footer { background:#ffffff; padding: 40px 20px 20px; margin: 20px auto;}
+#footer .social {display: none;}
+
+#footer .about {margin:0 auto; position: relative;	padding-bottom: 20px;
+/*	background: url("/img/logo.png") no-repeat; background-position: 615px 0px;*/
+}
+#footer .about p {color: #ffffff; font-size: 26px; font-weight: bold; font-style: italic;
+	font-family: 'Circular', Arial, sans-serif; 
+}
+#footer .about ul.contacts {display:block; width:100%; font-size: 1rem; }
+#footer .about ul.contacts li.contact {width:200px;}
+#footer .about ul.contacts li.contact * {color: #000000;}
+#footer .about ul.contacts li.contact .press {}
+#footer .about ul.contacts li.contact h4 {padding-bottom: 10px; font-size: 12px;}
+#footer .about ul.contacts li.contact h5 {padding-bottom: 24px; font-size:20px; text-transform: uppercase;
+	font-family: 'Circular', Arial, sans-serif;
+	font-weight: 800;
+}
+#footer .about ul.contacts li.contact p {font-weight: normal; font-style:normal; padding-bottom: 4px; font-size: 14px; line-height: 1em; 
+	font-family: 'Circular', Arial, sans-serif;
+}
+#footer .about ul.contacts li.contact p a {font-weight: bold;}
+#footer .about ul.contacts li.contact p a:hover {color: #00ff00;}
+

@@ -1,0 +1,277 @@
+
+/*seg_smartphone_include.css*/
+
+/*s-fonts.css*/
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-book.eot');
+	src: url('/css/fonts/lineto-circular-book.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-book.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-book.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-book.svg#CircularBook') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-bookitalic.eot');
+	src: url('/css/fonts/lineto-circular-bookitalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-bookitalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-bookitalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-bookitalic.svg#CircularBookItalic') format('svg');
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-medium.eot');
+	src: url('/css/fonts/lineto-circular-medium.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-medium.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-medium.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-medium.svg#CircularMedium') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-mediumitalic.eot');
+	src: url('/css/fonts/lineto-circular-mediumitalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-mediumitalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-mediumitalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-mediumitalic.svg#CircularMediumItalic') format('svg');
+	font-weight: 600;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-bold.eot');
+	src: url('/css/fonts/lineto-circular-bold.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-bold.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-bold.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-bold.svg#CircularBold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-bolditalic.eot');
+	src: url('/css/fonts/lineto-circular-bolditalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-bolditalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-bolditalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-bolditalic.svg#CircularBoldItalic') format('svg');
+	font-weight: 700;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-black.eot');
+	src: url('/css/fonts/lineto-circular-black.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-black.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-black.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-black.svg#CircularBlack') format('svg');
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-blackitalic.eot');
+	src: url('/css/fonts/lineto-circular-blackitalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-blackitalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-blackitalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-blackitalic.svg#CircularBlackItalic') format('svg');
+	font-weight: 800;
+	font-style: italic;
+}
+
+/*s-page.css*/
+* {font-family: 'Circular', Arial, sans-serif; color: #000000;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+html {min-height: 100%;}
+body {background: #ffffff; margin: 0; overflow-y: scroll;}
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dd, dt {padding: 0; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, li, dd, dt, span, a {line-height: 1em; font-weight: normal;}
+ul {list-style: none;}
+a {text-decoration: underline; cursor: pointer;}
+a:active {color: #009f00;}
+img {border: 0; display: block;}
+form, fieldset, label, input, select, textarea {padding: 0; margin: 0; font-weight: normal;}
+fieldset {border: none;}
+input, select, textarea {font-size: 16px;}
+input, textarea {outline: none;}
+#page {position: relative;}
+a, span {font-size: inherit; font-family: inherit; color: inherit; text-transform: inherit;}
+h1 {padding: 0 0 20px; font-size: 24px; text-transform: uppercase; font-weight: bold;
+	font-family: 'Circular', Arial, sans-serif; 
+}
+h2 {line-height: 1.25em; padding-bottom: 7px; padding-top: 7px;
+	font-family: 'Circular', Arial, sans-serif;
+}
+h3 {
+	font-family: 'Circular', Arial, sans-serif;
+}
+h4 {
+	font-family: 'Circular', Arial, sans-serif;
+}
+h5 {}
+h6 {}
+p {line-height: 1.38em; padding: 0 0 20px; font-size: 16px;} 
+ul {font-size: 0;}
+li {display: inline-block; vertical-align: top;
+	font-family: 'Circular', Arial, sans-serif;
+}
+dl {font-size: 0;} 
+dd, 
+dt {display: inline-block; vertical-align: top; text-transform: uppercase; color: #666666;
+	font-family: 'Circular', Arial, sans-serif;
+}
+
+
+/*s-footer.css*/
+#footer { background:#ffffff; padding: 40px 20px 20px; margin: 20px auto;}
+#footer .social {display: none;}
+#footer .about {margin:0 auto; position: relative;	padding-bottom: 20px;
+}
+#footer .about p {color: #ffffff; font-size: 26px; font-weight: bold; font-style: italic;
+	font-family: 'Circular', Arial, sans-serif; 
+}
+#footer .about ul.contacts {display:block; width:100%; font-size: 1rem; }
+#footer .about ul.contacts li.contact {width:200px;}
+#footer .about ul.contacts li.contact * {color: #000000;}
+#footer .about ul.contacts li.contact .press {}
+#footer .about ul.contacts li.contact h4 {padding-bottom: 10px; font-size: 12px;}
+#footer .about ul.contacts li.contact h5 {padding-bottom: 24px; font-size:20px; text-transform: uppercase;
+	font-family: 'Circular', Arial, sans-serif;
+	font-weight: 800;
+}
+#footer .about ul.contacts li.contact p {font-weight: normal; font-style:normal; padding-bottom: 4px; font-size: 14px; line-height: 1em; 
+	font-family: 'Circular', Arial, sans-serif;
+}
+#footer .about ul.contacts li.contact p a {font-weight: bold;}
+#footer .about ul.contacts li.contact p a:hover {color: #00ff00;}
+
+
+/*s-declaration.css*/
+body.declaration {background: #e8e8e8;}
+body.declaration #header {display: none;}
+body.declaration #content .scene,
+body.error #content .scene {padding: 30px 20px 50px; margin: 0 auto; position: relative; background: #ffffff; overflow: hidden;}
+body.declaration #content .scene h2 {padding: 0 0 10px; font-size: 20px;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase;
+}
+body.declaration #content .scene h3 {padding: 10px 0 ; font-size: 16px;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase;
+}
+body.declaration #content .scene input {border-radius: 0;
+	-webkit-appearance: none;
+	-moz-appearance: textfield;
+}
+body.declaration #content .scene ul.actions {padding: 10px 0 0; position: relative; height: 36px;}
+body.declaration #content .scene ul.actions li {display: block; margin-bottom: 10px;}
+body.declaration #content .scene ul.actions input {border: none; background: #000000; color: #00ff00; padding: 7px 20px; line-height: 20px; cursor: pointer; text-transform: uppercase; text-align: center; font-weight: bold; font-size: 14px;
+	font-family: 'Circular', Arial,sans-serif; 
+}
+body.declaration #content .scene ul.actions input:active {background: #00ff00; color: #000000;}
+body.declaration #content .scene ul.actions input.disabled,
+body.declaration #content .scene ul.actions input.disabled:active {background: #dedede; color: #999999;}
+body.declaration #content .scene .back {position: relative; z-index:100; background: #999999; color: #ffffff; padding: 10px 20px; font-size: 14px; cursor: pointer; text-transform: uppercase; font-weight: bold; text-align: center;
+	font-family: 'Circular', Arial,sans-serif;
+}
+body.declaration #content .scene .back:active {background: #00ff00; color: #000000;}
+body.declaration #content .scene.dataform .field {padding: 0 0 10px; font-size: 0;}
+body.declaration #content .scene.dataform .field span {font-size: 14px; padding: 2px 0 0; width: 12px; display: inline-block; vertical-align: top; text-align: center;}
+body.declaration #content .scene.dataform .field label {font-size: 14px; padding: 2px 5px 0 0; display: block;}
+body.declaration #content .scene.dataform .field label:after {content: ":";}
+body.declaration #content .scene.dataform .field input {width: 250px; display: inline-block; vertical-align: top; border: 1px solid #000000; padding: 2px 3px;}
+body.declaration #content .scene.dataform .field input.error {border-color: #ee191b;}
+body.declaration #content .scene.dataform .field input[type="number"]::-webkit-inner-spin-button,
+body.declaration #content .scene.dataform .field input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+body.declaration #content .scene.dataform .field input.cpr1 {width: 150px;}
+body.declaration #content .scene.dataform .field input.cpr2 {width: 80px;}
+body.declaration #content .scene.dataform .field.postalcity input.postal {width: 50px; margin-right: 12px;}
+body.declaration #content .scene.dataform .field.postalcity input.city {width: 180px;}
+body.declaration #content .scene.dataform ul.actions {padding: 15px 0 0;}
+body.declaration #content .scene.dataform ul.actions input {position: absolute; right: 0; top: 10px;}
+body.declaration #content .scene.signature {padding-bottom: 40px;}
+body.declaration #content .scene.signature p {padding: 0; font-size: 13px;}
+body.declaration #content .scene.signature h2 {text-transform: none; font-size: 18px; padding-bottom: 20px;}
+body.declaration #content .scene.signature .vcard {padding: 10px 0 30px;}
+body.declaration #content .scene.signature .vcard .name {font-size: 18px; font-weight: bold; text-transform: uppercase;}
+body.declaration #content .scene.signature .vcard .po-box,
+body.declaration #content .scene.signature .vcard .postallocality,
+body.declaration #content .scene.signature .vcard .url,
+body.declaration #content .scene.signature .vcard .email,
+body.declaration #content .scene.signature .vcard .telephone {font-size: 14px;}
+body.declaration #content .scene.signature .vcard .po-box:after {content: "";}
+body.declaration #content .scene.signature .vcard .url:after {content: "";}
+body.declaration #content .scene.signature .vcard .email:after {content: "";}
+body.declaration #content .scene.signature .vcard .url,
+body.declaration #content .scene.signature .vcard .email,
+body.declaration #content .scene.signature .vcard .telephone {display: block;}
+body.declaration #content .scene.signature div.signatureform {overflow: hidden; position: relative; padding: 0 0 20px;}
+body.declaration #content .scene.signature div.signatureform * {font-size: 14px;}
+body.declaration #content .scene.signature div.signatureform div.postal {display: inline-block; vertical-align: top;}
+body.declaration #content .scene.signature div.signatureform div.city {display: inline-block; vertical-align: top;}
+body.declaration #content .scene.signature div.signatureform div.cpr_1:before {content: "CPR: ";}
+body.declaration #content .scene.signature div.signatureform div.cpr_1,
+body.declaration #content .scene.signature div.signatureform div.cpr_2 {display: inline-block; vertical-align: top;}
+body.declaration #content .scene.signature div.signatureform div.cpr_2:before {content: "-";}
+body.declaration #content .scene.signature canvas.date {border: 2px solid #ee191b;
+	background: transparent url(/img/bg_standardvaelgererklaering_date.png) no-repeat left top; background-size: 100% auto;
+}
+body.declaration #content .scene.signature canvas.date.correct {border: 2px solid #009f00;}
+body.declaration #content .scene.signature canvas.signature {border: 2px solid #ee191b;}
+body.declaration #content .scene.signature canvas.signature.correct {border: 2px solid #009f00;}
+body.declaration #content .scene.signature form {padding-bottom: 20px; border-bottom: 1px solid #dedede; margin-bottom: 20px;}
+body.declaration #content .scene.signature ul.actions li.preview {position: absolute; top: 10px; right: 0;}
+body.declaration #content .scene.signature ul.actions li.reset {background: #999999; color: #ffffff; padding: 10px 20px; font-size: 14px; display: inline-block; cursor: pointer; text-transform: uppercase; font-weight:bold; margin-right: 10px;
+	font-family: 'Circular', Arial,sans-serif; 
+}
+body.declaration #content .scene.signature ul.actions li.reset:active {background: #fd0000; color: #ffffff;}
+body.declaration #content .scene.preview {}
+body.declaration #content .scene.preview div.preview {width: 737px;}
+body.declaration #content .scene.preview .vcard {font-size: 0; padding: 0 0 30px; text-align: center;}
+body.declaration #content .scene.preview .vcard .name {font-size: 48px; padding: 0 0 6px; font-weight: bold;}
+body.declaration #content .scene.preview .vcard .po-box,
+body.declaration #content .scene.preview .vcard .postallocality,
+body.declaration #content .scene.preview .vcard .url,
+body.declaration #content .scene.preview .vcard .email,
+body.declaration #content .scene.preview .vcard .telephone {font-size: 13px;}
+body.declaration #content .scene.preview .vcard .po-box:after {content: ",\00a0";}
+body.declaration #content .scene.preview .vcard .url:after {content: "\00a0-\00a0";}
+body.declaration #content .scene.preview .vcard .email:after {content: "\00a0-\00a0";}
+body.declaration #content .scene.preview .vcard .po-box,
+body.declaration #content .scene.preview .vcard .postallocality,
+body.declaration #content .scene.preview .vcard .url,
+body.declaration #content .scene.preview .vcard .email,
+body.declaration #content .scene.preview .vcard .telephone {display: inline-block; vertical-align: top;}
+body.declaration #content .scene.preview div.signatureform {height: 400px; overflow: hidden; position: relative; padding: 0 0 30px; background: transparent url(/img/bg_standardvaelgererklaering_userform.png) no-repeat left top;}
+body.declaration #content .scene.preview div.signatureform * {font-size: 12px;}
+body.declaration #content .scene.preview div.signatureform div {position: absolute; overflow: hidden;}
+body.declaration #content .scene.preview div.signatureform div.name {left: 55px; top: 30px; width: 330px;}
+body.declaration #content .scene.preview div.signatureform div.address1 {left: 55px; top: 65px; width: 330px;}
+body.declaration #content .scene.preview div.signatureform div.address2 {left: 55px; top: 95px; width: 330px;}
+body.declaration #content .scene.preview div.signatureform div.postal {left: 90px; top: 128px;}
+body.declaration #content .scene.preview div.signatureform div.postal span {float: left; padding: 0 10px 0 0; width: 12px;}
+body.declaration #content .scene.preview div.signatureform div.city {left: 192px; top: 127px; width: 170px;}
+body.declaration #content .scene.preview div.signatureform div.municipality {left: 490px; top: 78px; width: 220px;}
+body.declaration #content .scene.preview div.signatureform div.cpr_1 {left: 385px; top: 55px;}
+body.declaration #content .scene.preview div.signatureform div.cpr_1 span {float: left; padding: 0 17px 0 0; width: 12px;}
+body.declaration #content .scene.preview div.signatureform div.cpr_2 {left: 593px; top: 55px;}
+body.declaration #content .scene.preview div.signatureform div.cpr_2 span {float: left; padding: 0 17px 0 0; width: 12px;}
+body.declaration #content .scene.preview div.signatureform div.signature {position: absolute; top: 144px; left: 302px;}
+body.declaration #content .scene.preview div.signatureform div.date {position: absolute; top: 159px; left: 36px; cursor: pointer;}
+body.declaration #content .scene.preview div.signatureform canvas.date {width: 133px; height: 22px;}
+body.declaration #content .scene.preview div.signatureform canvas.signature {width: 250px; height: 41px;}
+body.declaration #content .scene.preview div.signatureform .signature_data,
+body.declaration #content .scene.preview div.signatureform .date_data {display: none;}
+body.declaration #content .scene.preview form {padding-bottom: 20px; border-bottom: 1px solid #dedede; margin-bottom: 20px;}
+body.declaration #content .scene.preview ul.actions {padding: 0; text-align: right;}
+body.declaration #content .scene.receipt p.regards {padding: 27px 0 9px;}
+body.declaration #content .scene.receipt h2 {font-weight: 800;}
+body.declaration #content .scene.receipt .actions li a {font-size: 16px; text-decoration: underline;}
+

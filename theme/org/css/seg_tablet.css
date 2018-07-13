@@ -1,0 +1,267 @@
+
+/*seg_tablet_include.css*/
+
+/*s-fonts.css*/
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-book.eot');
+	src: url('/css/fonts/lineto-circular-book.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-book.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-book.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-book.svg#CircularBook') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-bookitalic.eot');
+	src: url('/css/fonts/lineto-circular-bookitalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-bookitalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-bookitalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-bookitalic.svg#CircularBookItalic') format('svg');
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-medium.eot');
+	src: url('/css/fonts/lineto-circular-medium.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-medium.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-medium.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-medium.svg#CircularMedium') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-mediumitalic.eot');
+	src: url('/css/fonts/lineto-circular-mediumitalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-mediumitalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-mediumitalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-mediumitalic.svg#CircularMediumItalic') format('svg');
+	font-weight: 600;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-bold.eot');
+	src: url('/css/fonts/lineto-circular-bold.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-bold.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-bold.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-bold.svg#CircularBold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-bolditalic.eot');
+	src: url('/css/fonts/lineto-circular-bolditalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-bolditalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-bolditalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-bolditalic.svg#CircularBoldItalic') format('svg');
+	font-weight: 700;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-black.eot');
+	src: url('/css/fonts/lineto-circular-black.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-black.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-black.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-black.svg#CircularBlack') format('svg');
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Circular';
+	src: url('/css/fonts/lineto-circular-blackitalic.eot');
+	src: url('/css/fonts/lineto-circular-blackitalic.eot?#iefix') format('embedded-opentype'),
+		 url('/css/fonts/lineto-circular-blackitalic.woff') format('woff'),
+		 url('/css/fonts/lineto-circular-blackitalic.ttf') format('truetype'),
+		 url('/css/fonts/lineto-circular-blackitalic.svg#CircularBlackItalic') format('svg');
+	font-weight: 800;
+	font-style: italic;
+}
+
+/*s-page-desktop.css*/
+* {font-family: 'Circular', Arial, sans-serif; color: #000000;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+html {height: 100%;}
+body {background: #ffffff; margin: 0; overflow-y: scroll;}
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dd, dt {padding: 0; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, li, dd, dt, span, a {line-height: 1em; font-weight: normal;}
+ul {list-style: none;}
+a {text-decoration: none; cursor: pointer;}
+a:hover {}
+img {border: 0; display: block;}
+form, fieldset, label, input, select, textarea {padding: 0; margin: 0; font-weight: normal;}
+fieldset {border: none;}
+input, select, textarea {font-size: 14px;}
+input, textarea {outline: none;}
+#page {position: relative;}
+a, span {font-size: inherit; font-family: inherit; color: inherit; text-transform: inherit;}
+h1 {
+	font-family: 'Circular', Arial, sans-serif;
+}
+h2 {line-height: 1.25em; padding-bottom: 7px; padding-top: 7px;
+	font-family: 'Circular', Arial, sans-serif;
+}
+h3 {
+	font-family: 'Circular', Arial, sans-serif;
+}
+h4 {
+	font-family: 'Circular', Arial, sans-serif;
+}
+h5 {}
+h6 {}
+p {line-height: 1.38em; padding: 0 0 20px;} 
+ul {font-size: 0;}
+li {display: inline-block; vertical-align: top;
+	font-family: 'Circular', Arial, sans-serif;
+}
+dl {font-size: 0;} 
+dd, 
+dt {display: inline-block; vertical-align: top; text-transform: uppercase; color: #666666;
+	font-family: 'Circular', Arial, sans-serif;
+}
+
+
+/*s-footer-desktop.css*/
+#footer {background:#ffffff; width: 737px; padding: 40px 20px 20px; margin: 20px auto;}
+#footer .about {width:740px; margin:0 auto; position: relative;	padding-bottom: 20px;
+	background: url("/img/logo.png") no-repeat; background-position: 615px 0px;
+}
+body.error #footer .about {background: none;}
+#footer .about p {color: #ffffff; font-size: 26px; font-family: 'Circular', Arial, sans-serif; font-weight: bold; font-style:italic;}
+#footer .about ul.contacts {display:block; width:100%; font-size: 1rem; }
+#footer .about ul.contacts li.contact {width:200px;}
+#footer .about ul.contacts li.contact * {color: #000000;}
+#footer .about ul.contacts li.contact .press {}
+#footer .about ul.contacts li.contact h4 {padding-bottom: 10px; font-size: 12px;}
+#footer .about ul.contacts li.contact h5 {padding-bottom: 24px; font-size:20px; text-transform: uppercase; font-family: 'Circular', Arial, sans-serif;
+	font-weight: 800;
+	letter-spacing: 1px;
+}
+#footer .about ul.contacts li.contact p {font-weight: normal; font-style:normal; padding-bottom: 4px; font-size: 14px; line-height: 1em; font-family: 'Circular', Arial, sans-serif;}
+#footer .about ul.contacts li.contact p a {font-weight: bold;}
+#footer .about ul.contacts li.contact p a:hover {color: #00ff00;}
+
+/*s-declaration-desktop.css*/
+body.declaration {background: #e8e8e8;}
+body.declaration #header {display: none;}
+body.declaration #content .scene,
+body.error #content .scene {width: 737px; padding: 50px 20px 70px; margin: 0 auto; position: relative; background: #ffffff;}
+body.declaration #content .scene h1 {padding: 0 0 10px; font-size: 20px; text-align: center;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase;
+}
+body.declaration #content .scene h2 {padding: 0 0 10px; font-size: 20px; text-align: center;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase;
+}
+body.declaration #content .scene h3 {padding: 10px 0 ; font-size: 16px; text-align: center;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase;
+}
+body.declaration #content .scene .vcard {font-size: 0; padding: 0 0 30px; text-align: center;}
+body.declaration #content .scene .vcard .name {font-size: 48px; padding: 0 0 6px; font-weight: bold;}
+body.declaration #content .scene .vcard .po-box,
+body.declaration #content .scene .vcard .postallocality,
+body.declaration #content .scene .vcard .url,
+body.declaration #content .scene .vcard .email,
+body.declaration #content .scene .vcard .telephone {font-size: 13px;}
+body.declaration #content .scene .vcard .po-box:after {content: ",\00a0";}
+body.declaration #content .scene .vcard .url:after {content: "\00a0-\00a0";}
+body.declaration #content .scene .vcard .email:after {content: "\00a0-\00a0";}
+body.declaration #content .scene .vcard .po-box,
+body.declaration #content .scene .vcard .postallocality,
+body.declaration #content .scene .vcard .url,
+body.declaration #content .scene .vcard .email,
+body.declaration #content .scene .vcard .telephone {display: inline-block; vertical-align: top;}
+body.declaration #content .scene div.signatureform {width: 737px; overflow: hidden; position: relative; padding: 0 0 30px; background: transparent url(/img/bg_standardvaelgererklaering_userform.png) no-repeat left top;}
+body.declaration #content .scene div.signatureform * {font-size: 12px;}
+body.declaration #content .scene div.signatureform div {position: absolute; overflow: hidden;}
+body.declaration #content .scene div.signatureform div.name {left: 55px; top: 30px; width: 330px;}
+body.declaration #content .scene div.signatureform div.address1 {left: 55px; top: 65px; width: 330px;}
+body.declaration #content .scene div.signatureform div.address2 {left: 55px; top: 95px; width: 330px;}
+body.declaration #content .scene div.signatureform div.postal {left: 90px; top: 128px;}
+body.declaration #content .scene div.signatureform div.postal span {float: left; padding: 0 10px 0 0; width: 12px;}
+body.declaration #content .scene div.signatureform div.city {left: 192px; top: 127px; width: 170px;}
+body.declaration #content .scene div.signatureform div.municipality {left: 490px; top: 78px; width: 220px;}
+body.declaration #content .scene div.signatureform div.cpr_1 {left: 385px; top: 55px;}
+body.declaration #content .scene div.signatureform div.cpr_1 span {float: left; padding: 0 17px 0 0; width: 12px;}
+body.declaration #content .scene div.signatureform div.cpr_2 {left: 593px; top: 55px;}
+body.declaration #content .scene div.signatureform div.cpr_2 span {float: left; padding: 0 17px 0 0; width: 12px;}
+body.declaration #content .scene div.signatureform div.date {position: absolute; top: 157px; left: 34px; cursor: pointer;}
+body.declaration #content .scene canvas.date {width: 133px; height: 22px; margin: 2px;}
+body.declaration #content .scene.signature canvas.date {border: 2px solid #ee191b; margin: 0;}
+body.declaration #content .scene.signature canvas.date.selected {border: 2px solid #00027a; margin: 0;}
+body.declaration #content .scene.signature canvas.date.correct {border: 2px solid #009f00; margin: 0;}
+body.declaration #content .scene div.signatureform div.signature {position: absolute; top: 142px; left: 300px; cursor: pointer;}
+body.declaration #content .scene canvas.signature {width: 250px; height: 41px; margin: 2px;}
+body.declaration #content .scene.signature canvas.signature {border: 2px solid #ee191b; margin: 0;}
+body.declaration #content .scene.signature canvas.signature.selected {border: 2px solid #00027a; margin: 0;}
+body.declaration #content .scene.signature canvas.signature.correct {border: 2px solid #009f00; margin: 0;}
+body.declaration #content .scene input {border-radius: 0;
+	-webkit-appearance: none;
+	-moz-appearance: textfield;
+}
+body.declaration #content .scene .actions input {border: none; background: #000000; color: #00ff00; padding: 6px 20px; line-height: 20px; cursor: pointer;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase; text-align: center; font-weight: bold;
+}
+body.declaration #content .scene .actions input:hover {background: #00ff00; color: #000000;}
+body.declaration #content .scene .back {position: relative; z-index:100; top: -30px; background: #000000; color: #00ff00; padding: 8px 20px; font-size: 14px; display: inline-block; cursor: pointer;
+	font-family: 'Circular', Arial,sans-serif; text-transform: uppercase; font-weight: bold;
+}
+body.declaration #content .scene .back:hover {background: #00ff00; color: #000000;}
+body.declaration #content .scene.dataform h1 {padding: 0 0 20px; font-size: 40px; text-align: center; font-weight: bold;}
+#content .scene.dataform p {padding:0 90px 20px; text-align: center; font-size: 16px;}
+#content .scene.dataform .field {padding: 0 0 15px; font-size: 0;}
+#content .scene.dataform .field span {font-size: 14px; padding: 2px 0 0; width: 12px; display: inline-block; vertical-align: top; text-align: center;}
+#content .scene.dataform .field label {width: 265px; font-size: 14px; text-align: right; display: inline-block; vertical-align: top; padding: 2px 5px 0 0;}
+#content .scene.dataform .field label:after {content: ":";}
+#content .scene.dataform .field input {width: 250px; display: inline-block; vertical-align: top; border: 1px solid #000000; padding: 2px 3px;}
+#content .scene.dataform .field input.error {border-color: #ee191b;}
+#content .scene.dataform .field input[type="number"]::-webkit-inner-spin-button,
+#content .scene.dataform .field input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+#content .scene.dataform .field input.cpr1 {width: 150px;}
+#content .scene.dataform .field input.cpr2 {width: 80px;}
+#content .scene.dataform .field.postalcity input.postal {width: 50px; margin-right: 12px;}
+#content .scene.dataform .field.postalcity input.city {width: 180px;}
+#content .scene.dataform .actions {padding: 15px 0 0 328px;}
+#content .scene.dataform .actions input {width: 120px;}
+body.declaration #content .scene.signature {padding-bottom: 40px;}
+#content .scene.signature div.signatureform {height: 201px;}
+#content .scene.signature p {padding: 0 0 30px; font-size: 13px; text-align: center;}
+body.declaration #content .scene ul.actions li.reset {background: #000000; color: #00ff00; padding: 10px 20px; font-size: 14px; display: inline-block; cursor: pointer; font-family: 'Circular', Arial,sans-serif; text-transform: uppercase; font-weight:bold; margin-right: 10px;}
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	body.declaration #content .scene ul.actions li.reset {line-height: 12px;}
+}
+body.declaration #content .scene ul.actions li.reset:hover {background: #00ff00; color: #000000;}
+#content .scene.signature div.input {padding: 0 0 30px; display: none; position: relative;}
+#content .scene.signature div.input h2 {display: block; font-size: 13px; padding: 10px 0 10px; width: 150px; left: 50%; margin-left: -75px; text-align: center; position: absolute; top: 22px; color: #999999;
+	font-family: 'Circular', Arial,sans-serif; text-transform: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+body.declaration #content .scene.signature canvas.canvas_input {width: 733px; height: 121px; border: 2px solid #000000;}
+body.declaration #content .scene.signature canvas.canvas_input.date {background: transparent url(/img/bg_standardvaelgererklaering_date.png) no-repeat left top;}
+#content .scene.signature ul.actions {padding: 0; text-align: right;}
+body.declaration #content .scene.preview {padding-bottom: 40px;}
+#content .scene.preview div.signatureform {height: 400px;}
+#content .scene.preview ul.actions {padding: 0; text-align: right;}
+body.declaration #content .scene.preview .signature_data,
+body.declaration #content .scene.preview .date_data {display: none;}
+#content .scene.receipt {width: 737px; margin: 0 auto; position: relative; padding: 50px 0 70px;}
+body.declaration #content .scene.receipt h1 {font-size: 40px; font-weight: bold; padding-bottom:20px;}
+body.declaration #content .scene.receipt p {font-size: 16px; text-align: center; padding:0 100px 20px;}
+body.declaration #content .scene.receipt p a {text-decoration: underline;}
+body.declaration #content .scene.receipt p a:hover {color: #009f00;}
+body.declaration #content .scene.receipt h2 {font-weight: bold;}
+body.declaration #content .scene.receipt h3 {font-size: 16px; text-align: center; font-weight: bold; padding-bottom: 4px;}
+body.declaration #content .scene.receipt p.regards {padding: 27px 0 9px;}
+body.declaration #content .scene.receipt .actions li a {font-size: 16px; text-decoration: underline;}
+

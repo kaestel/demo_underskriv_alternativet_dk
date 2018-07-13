@@ -1,0 +1,12 @@
+/* DECLARATION */
+#content .defaultList.declarationList h1 {border-bottom: 1px solid #dedede; padding-bottom: 74px;}
+
+#content .defaultList.declarationList ul.items > li h3 {padding-bottom: 13px;}
+
+#content .defaultList.declarationList h2 {padding-top: 20px;}
+
+#content .defaultList.declarationList div.bundles {padding-bottom: 30px;}
+
+/* NAVIGATION */
+
+body.declaration #navigation .declaration a {padding-left: 35px; color: #ffffff;}
