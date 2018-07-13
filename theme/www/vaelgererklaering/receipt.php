@@ -1,19 +1,4 @@
 <?php include_once($_SERVER["LOCAL_PATH"]."/includes/segment.php") ?>
-<?php include_once($_SERVER["LOCAL_PATH"]."/includes/functions.inc.php") ?>
-<?
-
-$name            = getPost("name");
-$address1        = getPost("address1");
-$address2        = getPost("address2");
-$postal          = getPost("postal");
-$city            = getPost("city");
-$municipality    = getPost("municipality");
-$cpr_1           = getPost("cpr_1");
-$cpr_2           = getPost("cpr_2");
-
-$date_data       = getPost("date_data");
-$signature_data  = getPost("signature_data");
-?>
 <!DOCTYPE html>
 <html lang="DA">
 <head>
