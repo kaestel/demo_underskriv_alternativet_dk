@@ -17,8 +17,6 @@ $signature_data  = getPost("signature_data");
 <!DOCTYPE html>
 <html lang="DA">
 <head>
-	<!-- (c) & (p) think.dk, 2013-2015 //-->
-	<!-- All material protected by copyrightlaws, as if you didnt know //-->
 	<title>Vælgererklæring</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -28,11 +26,8 @@ $signature_data  = getPost("signature_data");
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-	<link type="text/css" rel="stylesheet" media="all" href="/css/lib/seg_<?= $_SESSION["segment"] ?>_include.css?v=1.4" />
-	<script type="text/javascript" src="/js/lib/seg_<?= $_SESSION["segment"] ?>_include.js?v=1.4"></script>
-
-	<!-- <link type="text/css" rel="stylesheet" media="all" href="/css/seg_<?= $_SESSION["segment"] ?>.css" />
-	<script type="text/javascript" src="/js/seg_<?= $_SESSION["segment"] ?>.js"></script> -->
+	<link type="text/css" rel="stylesheet" media="all" href="/css/seg_<?= $_SESSION["segment"] ?>.css" />
+	<script type="text/javascript" src="/js/seg_<?= $_SESSION["segment"] ?>.js"></script>
 </head>
 
 <body class="declaration">
