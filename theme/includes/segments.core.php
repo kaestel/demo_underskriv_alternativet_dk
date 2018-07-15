@@ -9,15 +9,14 @@ $segments_config = array(
 	"www" => array(
 	
 		// fallback to something similar to detector-v2
-		"desktop_edge"  => "desktop",
 		"desktop"       => "desktop",
 
-		"desktop_ie11"  => "desktop_ie",
-		"desktop_ie10"  => "desktop_ie",
-		"desktop_ie9"   => "desktop_ie",
+		"desktop_ie11"  => "desktop",
+		"desktop_ie10"  => "desktop",
 
 		"smartphone"    => "smartphone",
 
+		"desktop_ie9"   => "unsupported",
 		"desktop_light" => "unsupported",
 		"tv"            => "unsupported",
 
