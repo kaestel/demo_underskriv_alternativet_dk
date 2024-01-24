@@ -5,6 +5,27 @@
 * @package Functions
 */
 
+
+function debug($vars, $output = "print") {
+	if(!is_array($vars)) {
+		$vars = [$vars];
+	}
+	foreach($vars as $var) {
+
+		if($output == "file") {
+			writeToFile($var);
+		}
+		else {
+			print "<pre>";
+			print_r($var);
+			print "</pre>";
+			print "<br />\n";
+		}
+		
+	}
+}
+
+
 /**
 * Include additional functions
 */
@@ -14,13 +35,12 @@
 /**
 * used by zip
 */
-
 function utf8Encode($string) {
 	$new_string = '';	
 	for($i = 0; $i < strlen($string); $i++){ 
 		//print "$i: ".$string{$i}.": ".mb_detect_encoding($string{$i});
-		if(mb_detect_encoding($string{$i})) {
-			$new_string .= $string{$i};
+		if(mb_detect_encoding($string[$i])) {
+			$new_string .= $string[$i];
 		}
 	}
 	$encoding = mb_detect_encoding($new_string);
@@ -71,7 +91,7 @@ function RESTParams($index=false) {
 
 /**
 * Get a variable which
-* Looking for var in $_SESSION, $_POST, $_GET
+* Looking for var in $_POST, $_GET
 *
 * @param string $which
 * @return string|false
@@ -99,6 +119,7 @@ function getVar($which) {
 */
 function getPost($which) {
 	if(isset($_POST[$which])) {
+		// debug(["getPost($which)", $_POST[$which]]);
 		return prepareForDB($_POST[$which]);
 	}
 	else {
@@ -113,11 +134,23 @@ function getPosts($which) {
 		if(isset($_POST[$name])) {
 			$posts[$name] = prepareForDB($_POST[$name]);
 		}
+		else {
+			$posts[$name] = false;
+		}
 	}
 	return $posts;
 }
 
-
+// Special case for passwords - do not sanitize posted values for passwords
+function getPostPassword($which) {
+	if(isset($_POST[$which])) {
+		// debug(["getPostPassword($which)", $_POST[$which]]);
+		return $_POST[$which];
+	}
+	else {
+		return false;
+	}
+}
 
 
 /**
@@ -143,7 +176,7 @@ function prepareForHTML($string) {
 
 /**
 * Prepare Correcting quotes and removes bad HTML tags and attributes
-* Recursive function for arrays - actual stripping is handled by prepareForDBdo
+* Recursive function for arrays - actual stripping is handled by stripDisallowed
 *
 * @param string $string
 * @return string
@@ -161,7 +194,6 @@ function prepareForDB($string) {
 	else {
 
 		global $mysqli_global;
-
 		$string = stripDisallowed($string);
 		if($mysqli_global) {
 			$string = $mysqli_global->escape_string($string);
@@ -180,67 +212,30 @@ function prepareForDB($string) {
 * @param string $string
 * @return string
 */
-
 function stripDisallowed($string) {
+
 	// strip tags
 	$allowed_tags = '<a><strong><em><sup><h1><h2><h3><h4><h5><h6><p><label><br><hr><ul><ol><li><dd><dl><dt><span><img><div><table><tr><td><th><code>';
 	$string = strip_tags($string, $allowed_tags);
 
-	// only look through attributes if any tags left
+	// debug(["stripDisallowed", $string]);
+
+	// only look through attributes if any tags are left after initial sanitizing
+	// This time without any allowed tags
 	if($string != strip_tags($string)) {
 
-//		print "\nA:".$string."<br>";
-		// create dom from string
-		$dom = new DOMDocument('1.0', 'UTF-8');
+		$dom = DOM()->createDOM($string);
+		if($dom) {
 
-		// some weird <br> issue in PHP DOM
-		// I cannot load document with <br> tags and when I save HTML it automatically replaces all <br /> with <br> which I then again cannot load.
-		$string = htmlspecialchars(preg_replace("/<br>/", "<br />", $string), 32, "UTF-8", true);
+			// debug(["START SAVE", DOM()->saveHTML($dom), "END SAVE"]);
+			// debug($dom->saveHTML());
 
-//		print "3\n".$string."\n";
-// 		print htmlentities($string) ."<br>";
+			DOM()->stripAttributes($dom);
 
-		// loadHTML needs content definition for UTF-8 - it should be enough to state it in the constructor, but it does not work
-		if($dom->loadHTML('<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head><body>'.$string.'</body>')) {
-
-			$nodes = $dom->getElementsByTagName('*');
-
-			// loop nodes
-			foreach($nodes as $node) {
-
-				// remember what to remove and remove in the end of each iteration as removing alters the node and thus the loop
-				$remove_attributes = array();
-
-				// loop attributes
-				foreach($node->attributes as $attribute => $attribute_node) {
-
-					// check for allowed attribute
-					if(preg_match("/href|class|width|height|alt/i", $attribute)) {
-
-						// if href, only allow absolute http links (no javascript or other crap)
-						if($attribute == "href" && strpos($attribute_node->value, "http://") !== 0) {
-							$remove_attributes[] = $attribute;
-						}
-					}
-					else {
-						$remove_attributes[] = $attribute;
-					}
-				}
-				// remove identified attributes
-				foreach($remove_attributes as $remove_attribute) {
-					$node->removeAttribute($remove_attribute);
-				}
-			}
-			
-			// remove <content> dummy tag and <br> to <br /> conversion
-			$string = preg_replace("/<br>/", "<br />", strip_tags(trim($dom->saveHTML()), $allowed_tags));
-//			$string = $dom->saveXML();
+			// Export HTML and remove any mis-interpreted tags
+			$string = strip_tags(trim(DOM()->saveHTML($dom)), $allowed_tags);
 
 		}
-
-		// saveHTML encodes entities
-		$string = html_entity_decode($string, ENT_QUOTES, "UTF-8");
-//		print "\nB:".$string."<br>";
 
 	}
 
@@ -261,7 +256,7 @@ function arrayKeyValue($array, $key, $value) {
 }
 
 /**
-* Generate ramdom key
+* Generate random key
 *
 * @param Integer $length (Optional) Length of key. Default is 8.
 * @return String Random key
@@ -271,7 +266,7 @@ function randomKey($length=false) {
 	$length = $length ? $length : 8;
 	$key = '';
 	for($i = 0; $i < $length; $i++) {
-		$key .= $pattern{rand(0,35)};
+		$key .= $pattern[rand(0,35)];
 	}
 	return $key;
 }
@@ -391,11 +386,13 @@ function cutString($string, $max_length) {
 		return $return_string;
 	}
 
+	$max_length = $max_length - 3;
+
 	// cut string
 	$return_string = substr($return_string, 0, $max_length);
 	
 	// or look for last word-spacing
-	if(strrpos($return_string, " ") !== false) {
+	if(substr($string, $max_length, 1) !== " " && strrpos($return_string, " ") !== false) {
 		return substr($return_string, 0, strrpos($return_string, " ")) . "...";
 	}
 
@@ -519,19 +516,19 @@ function superNormalize($string) {
 
 
 function _uniord($c) {
-    if (ord($c{0}) >=0 && ord($c{0}) <= 127)
-        return ord($c{0});
-    if (ord($c{0}) >= 192 && ord($c{0}) <= 223)
-        return (ord($c{0})-192)*64 + (ord($c{1})-128);
-    if (ord($c{0}) >= 224 && ord($c{0}) <= 239)
-        return (ord($c{0})-224)*4096 + (ord($c{1})-128)*64 + (ord($c{2})-128);
-    if (ord($c{0}) >= 240 && ord($c{0}) <= 247)
-        return (ord($c{0})-240)*262144 + (ord($c{1})-128)*4096 + (ord($c{2})-128)*64 + (ord($c{3})-128);
-    if (ord($c{0}) >= 248 && ord($c{0}) <= 251)
-        return (ord($c{0})-248)*16777216 + (ord($c{1})-128)*262144 + (ord($c{2})-128)*4096 + (ord($c{3})-128)*64 + (ord($c{4})-128);
-    if (ord($c{0}) >= 252 && ord($c{0}) <= 253)
-        return (ord($c{0})-252)*1073741824 + (ord($c{1})-128)*16777216 + (ord($c{2})-128)*262144 + (ord($c{3})-128)*4096 + (ord($c{4})-128)*64 + (ord($c{5})-128);
-    if (ord($c{0}) >= 254 && ord($c{0}) <= 255)    //  error
+    if (ord($c[0]) >=0 && ord($c[0]) <= 127)
+        return ord($c[0]);
+    if (ord($c[0]) >= 192 && ord($c[0]) <= 223)
+        return (ord($c[0])-192)*64 + (ord($c[1])-128);
+    if (ord($c[0]) >= 224 && ord($c[0]) <= 239)
+        return (ord($c[0])-224)*4096 + (ord($c[1])-128)*64 + (ord($c[2])-128);
+    if (ord($c[0]) >= 240 && ord($c[0]) <= 247)
+        return (ord($c[0])-240)*262144 + (ord($c[1])-128)*4096 + (ord($c[2])-128)*64 + (ord($c[3])-128);
+    if (ord($c[0]) >= 248 && ord($c[0]) <= 251)
+        return (ord($c[0])-248)*16777216 + (ord($c[1])-128)*262144 + (ord($c[2])-128)*4096 + (ord($c[3])-128)*64 + (ord($c[4])-128);
+    if (ord($c[0]) >= 252 && ord($c[0]) <= 253)
+        return (ord($c[0])-252)*1073741824 + (ord($c[1])-128)*16777216 + (ord($c[2])-128)*262144 + (ord($c[3])-128)*4096 + (ord($c[4])-128)*64 + (ord($c[5])-128);
+    if (ord($c[0]) >= 254 && ord($c[0]) <= 255)    //  error
         return FALSE;
     return 0;
 }
@@ -543,25 +540,41 @@ function _unichr($o) {
     }
 }
 
-// Emoji handling (unicode out of UTF range)
+
+// POLYFILLS
 // included from php72
- if (!function_exists('mb_ord')): function mb_ord($string) {
-	mb_language('Neutral');
-	mb_internal_encoding('UTF-8');
-	mb_detect_order(array('UTF-8', 'ISO-8859-15', 'ISO-8859-1', 'ASCII'));
-	$result = unpack('N', mb_convert_encoding($string, 'UCS-4BE', 'UTF-8'));
-	if(is_array($result) === true) {
-		return $result[1];
+if(!function_exists('mb_ord')):
+	function mb_ord($string) {
+		mb_language('Neutral');
+		mb_internal_encoding('UTF-8');
+		mb_detect_order(array('UTF-8', 'ISO-8859-15', 'ISO-8859-1', 'ASCII'));
+		$result = unpack('N', mb_convert_encoding($string, 'UCS-4BE', 'UTF-8'));
+		if(is_array($result) === true) {
+			return $result[1];
+		}
+		return ord($string);
 	}
-	return ord($string);
-} endif;
+endif;
+
 // included from php72
-if (!function_exists('mb_chr')): function mb_chr($string) {
-	mb_language('Neutral');
-	mb_internal_encoding('UTF-8');
-	mb_detect_order(array('UTF-8', 'ISO-8859-15', 'ISO-8859-1', 'ASCII'));
-	return mb_convert_encoding('&#' . intval($string) . ';', 'UTF-8', 'HTML-ENTITIES');
-} endif;
+if(!function_exists('mb_chr')):
+	function mb_chr($string) {
+		mb_language('Neutral');
+		mb_internal_encoding('UTF-8');
+		mb_detect_order(array('UTF-8', 'ISO-8859-15', 'ISO-8859-1', 'ASCII'));
+		return mb_convert_encoding('&#' . intval($string) . ';', 'UTF-8', 'HTML-ENTITIES');
+	}
+endif;
+
+if(!function_exists('str_starts_with')):
+	function str_starts_with($haystack, $needle) {
+		return ($needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0);
+	}
+endif;
+
+
+
+// Emoji handling (unicode out of UTF range)
 function decodeEmoji($string, $system) {
 	global $__decode_emoji_system;
 	$__decode_emoji_system = $system;
@@ -581,13 +594,24 @@ function encodeEmoji($string, $system) {
 function mimetypeToExtension($mimetype) {
 	$extensions = array(
 		"image/gif" => "gif", 
-		"image/jpeg" => "jpg", 
+		"image/jpeg" => "jpg",
+		"image/jpg" => "jpg",
 		"image/png" => "png",
+
+		"image/avif" => "avif",
+		"image/webp" => "webp",
+
+		"audio/mpeg" => "mp3",
+		"audio/x-wav" => "wav",
+		"audio/x-aac" => "aac",
+
+		"video/mp4" => "mp4",
+		"video/quicktime" => "mov",
+
 		"application/pdf" => "pdf",
 		"application/zip" => "zip",
-		"audio/mpeg" => "mp3",
-		"video/mp4" => "mp4",
-		"video/quicktime" => "mov"
+		
+		"text/plain" => "txt"
 	);
 
 	if(isset($extensions[$mimetype])) {
@@ -611,9 +635,9 @@ function toTimestamp($timestamp) {
 
 	$hours = isset($parts[3]) && $parts[3] ? $parts[3] : date("G", time());
 	$minutes = isset($parts[4]) && $parts[4] ? $parts[4] : date("i", time());
-	$seconds = isset($parts[5]) && $parts[5] ? $parts[5] : date("s", time());
+	$seconds = isset($parts[5]) && $parts[5] ? $parts[5] : 0;
 	
-//	print $date ."#" . $month . "#" . $year . "#" . $hours . "#" . $minutes . "#" . $seconds . "<br>";
+	// print $timestamp . " = " . $date ."#" . $month . "#" . $year . "#" . $hours . "#" . $minutes . "#" . $seconds . " => " . date("Y-m-d H:i:s", mktime($hours, $minutes, $seconds, $month, $date, $year)) . "<br>";
 	
 	return date("Y-m-d H:i:s", mktime($hours, $minutes, $seconds, $month, $date, $year));
 }
@@ -630,49 +654,110 @@ function pluralize($count, $singular, $plural) {
 
 
 // price formatting - uses $page and currency db-table for information
-// optinally add currency abbreviation and/or VAT
+// optionally add currency abbreviation and/or VAT
+// decimals can optionally be shown only if they are not zero
 function formatPrice($price, $_options=false) {
 	global $page;
 
 	$vat = false;
 	$currency = true;
+	$conditional_decimals = false;
 
 	if($_options !== false) {
 		foreach($_options as $_option => $_value) {
 			switch($_option) {
-				case "vat"        : $vat         = $_value; break;
-				case "currency"   : $currency    = $_value; break;
+				case "vat"                    : $vat                     = $_value; break;
+				case "currency"               : $currency                = $_value; break;
+				case "conditional_decimals"   : $conditional_decimals    = $_value; break;
 			}
 		}
 	}
 
+	if($price) {
 
-	$_ = '';
+		$_ = '';
 
-	$currency_details = $page->currencies($price["currency"]);
-
-	$formatted_price = number_format($price["price"], $currency_details["decimals"], $currency_details["decimal_separator"], $currency_details["grouping_separator"]);
-
-	// show currency
-	if($currency) {
-		if($currency_details["abbreviation_position"] == "after") {
-			$_ .= $formatted_price . " " . $currency_details["abbreviation"];
+		if(isset($price["currency"])) {
+			$currency_details = $page->currencies($price["currency"]);
 		}
 		else {
-			$_ .= $currency_details["abbreviation"] . " " . $formatted_price;
+			$currency_details = $page->currencies(defined("DEFAULT_CURRENCY_ISO") ? DEFAULT_CURRENCY_ISO : "DKK");
 		}
-	}
-	else {
-		$_ .= $formatted_price;
+
+		if($conditional_decimals && ctype_digit($price["price"])) {
+
+			// price is an integer; omit decimals
+			$formatted_price = number_format($price["price"], 0, $currency_details["decimal_separator"], $currency_details["grouping_separator"]);
+		}
+		else {
+
+			$formatted_price = number_format($price["price"], $currency_details["decimals"], $currency_details["decimal_separator"], $currency_details["grouping_separator"]);
+		}
+	
+	
+		// show currency
+		if($currency) {
+			if($currency_details["abbreviation_position"] == "after") {
+				$_ .= $formatted_price . " " . $currency_details["abbreviation"];
+			}
+			else {
+				$_ .= $currency_details["abbreviation"] . " " . $formatted_price;
+			}
+		}
+		else {
+			$_ .= $formatted_price;
+		}
+	
+		if($vat) {
+			$_ .= " (".number_format($price["vat"], $currency_details["decimals"], $currency_details["decimal_separator"], $currency_details["grouping_separator"]).")";
+		}
+	
+		return $_;
 	}
 
-	if($vat) {
-		$_ .= " (".number_format($price["vat"], $currency_details["decimals"], $currency_details["decimal_separator"], $currency_details["grouping_separator"]).")";
-	}
-
-	return $_;
+	return false;
 
 }
+
+// Sessions open and close helpers
+function sessionStart() {
+	session_start();
+
+	// Fix multiple Set Cookie headers from session_start
+	fixDuplicateCookieHeaders();
+}
+function fixDuplicateCookieHeaders() {
+
+	// Only if headers have not already been sent
+	if(!headers_sent()) {
+
+		$cookies = [];
+		$headers = headers_list();
+
+		// Loop through headers and collect cookies
+		foreach($headers as $header) {
+			// Find cookie headers
+			if(str_starts_with($header, "Set-Cookie:")) {
+				$cookies[] = $header;
+			}
+		}
+
+		// Remove all cookie headers, including duplicates
+		header_remove("Set-Cookie");
+
+		// Restore one copy of each cookie
+		$unique_cookies = array_unique($cookies);
+		foreach($unique_cookies as $cookie) {
+			header($cookie, false);
+		}
+
+	}
+
+}
+function sessionEnd($source = false) {
+	session_write_close();
+}
+
 
 // Identify ffmpeg path (differs in different systems/installs)
 function ffmpegPath() {
@@ -780,15 +865,179 @@ function wkhtmltoPath() {
 }
 
 
+// Enable dynamic message texts
+function translate($id, $variables = false) {
+	global $__translations;
+	
+	if(isset($__translations[$id])) {
+
+		$string = $__translations[$id];
+
+		if($variables) {
+			foreach($variables as $key => $value) {
+				$string = str_replace("{".$key."}", $value, $string);
+			}
+		}
+
+		return $string;
+	}
+
+	// If translation does not exist, replace variables in string id
+	if($variables) {
+		foreach($variables as $key => $value) {
+			$id = str_replace("{".$key."}", $value, $id);
+		}
+	}
+
+	return $id;
+}
+
+// Shorthand auto initializer for mailer access
+$__mail = false;
+function mailer() {
+	global $__mail;
+	if(!$__mail) {
+		include_once("classes/helpers/mailer.class.php");
+		$__mail = new MailGateway();
+	}
+	return $__mail;
+}
+
+
+// Shorthand auto initializer for DOM
+$__dom = false;
+function DOM() {
+	global $__dom;
+	if(!$__dom) {
+		include_once("classes/helpers/dom.class.php");
+		$__dom = new DOM();
+	}
+	return $__dom;
+}
+
+
+// Shorthand auto initializer for payment access
+$__pay = false;
+function payments() {
+	global $__pay;
+	if(!$__pay) {
+		include_once("classes/helpers/payments.class.php");
+		$__pay = new PaymentGateway();
+	}
+	return $__pay;
+}
+
+// Shorthand auto initializer for qr code generator access
+$__qr = false;
+function qr_codes() {
+	global $__qr;
+	if(!$__qr) {
+		include_once("classes/helpers/qr_codes.class.php");
+		$__qr = new QrCodesGateway();
+	}
+	return $__qr;
+}
+
+// Shorthand auto initializer for sms gateway access
+$__sms = false;
+function sms() {
+	global $__sms;
+	if(!$__sms) {
+		include_once("classes/helpers/sms.class.php");
+		$__sms = new SMSGateway();
+	}
+	return $__sms;
+}
+
+// curl
+$__curl = false;
+function curl() {
+	global $__curl;
+	if(!$__curl) {
+		include_once("classes/helpers/curl.class.php");
+		$__curl = new CurlRequest();
+	}
+	return $__curl;
+}
+
+// Shorthand auto initializer for performance access
+$__perf = false;
+function perf() {
+	global $__perf;
+	if(!$__perf) {
+		include_once("classes/helpers/performance.class.php");
+		$__perf = new Performance();
+	}
+	return $__perf;
+}
+
+// Shorthand auto initializer for security access
+$__security = false;
+function security() {
+	global $__security;
+	if(!$__security) {
+		include_once("classes/system/security.class.php");
+		$__security = new Security();
+	}
+	return $__security;
+}
+
+// Shorthand auto initializer for log access
+$__logger = false;
+function logger() {
+	global $__logger;
+	if(!$__logger) {
+		include_once("classes/system/log.class.php");
+		$__logger = new Log();
+	}
+	return $__logger;
+}
+
+// Shorthand auto initializer for message access
+$__message = false;
+function message() {
+	global $__message;
+	if(!$__message) {
+		include_once("classes/system/message.class.php");
+		$__message = new Message();
+	}
+	return $__message;
+}
+
+// Shorthand auto initializer for session access
+$__session = false;
+function session() {
+	global $__session;
+	if(!$__session) {
+		include_once("classes/system/session.class.php");
+		$__session = new Session();
+	}
+	return $__session;
+}
+
+
+// Shorthand auto initializer for cache access
+$__cache = false;
+function cache() {
+	global $__cache;
+	if(!$__cache) {
+		include_once("classes/system/cache.class.php");
+		$__cache = new Cache();
+	}
+	return $__cache;
+}
+
+
+
 /**
 * Converts dd:mm:yyyy hh:mm to yyyy:mm:dd hh:mm:ss
 */
-function mTimestamp($timestamp) {
-	list($date, $time) = explode(" ", $timestamp);
-	list($date, $month, $year) = explode('-', $date);
-	list($hours, $minutes) = explode(':', $time);
-
-	return date("Y-m-d H:i:s", mktime($hours, $minutes, 0, $month, $date, $year));
-}
+// function mTimestamp($timestamp) {
+// 	list($date, $time) = explode(" ", $timestamp);
+// 	list($date, $month, $year) = explode('-', $date);
+// 	list($hours, $minutes) = explode(':', $time);
+//
+// 	return date("Y-m-d H:i:s", mktime($hours, $minutes, 0, $month, $date, $year));
+// }
 
 ?>
